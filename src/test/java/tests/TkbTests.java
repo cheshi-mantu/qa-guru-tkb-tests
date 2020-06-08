@@ -21,30 +21,53 @@ import static io.qameta.allure.Allure.step;
 @Tag("tkb_tests")
 class TkbTests extends TestBase {
     @Test
-    @Story("TKB deposits button press test by closest A to the text")
     @Description("Open page, find Вклады button, select closest A, then click")
     void pageOpenButtonClickClosestA() {
-            step ("Open Tinkoff main page", () -> {
-            open(url);
-            });
+            step ("Open Tinkoff main page", () -> open(url));
             step("Locate and press Вклады on page top", () -> {
                 $(byText("Вклады")).closest("a").click();
                 $("h1").shouldHave(text("Откройте вклад"));
             });
             }
     @Test
-    @Story("TKB deposits button press test")
-    @Description("Open page, find Вклады button by href=\'/deposit/\', then click")
+    @Description("Open page, find Вклады button by href='/deposit/', then click")
     void pageOpenButtonClickbyHref() {
-        step ("Open Tinkoff main page", () -> {
-            open(url);
-        });
+        step ("Open Tinkoff main page", () -> open(url));
         step("Locate and press Вклады by href ", () -> {
-            $("[href=\'/deposit/\']").click();
+            $("[href='/deposit/']").click();
+            $("h1").shouldHave(text("Откройте вклад"));
+        });
+    }
+    @Test
+    @Description("Open page, find Вклады button by qa type , then click")
+    void pageOpenButtonClickbyQaType() {
+        step ("Open Tinkoff main page", () -> open(url));
+        step("Locate and press Вклады by qa type", () -> {
+            $$("[data-qa-type='uikit/tabsWithDroplist.item']").get(2).click();
+            $("h1").shouldHave(text("Откройте вклад"));
+        });
+    }
+    @Test
+    @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
+    void pageOpenButtonClickbyDiv() {
+        step ("Open Tinkoff main page", () -> open(url));
+        step("Locate and press Вклады by qa type", () -> {
+            $("[data-tabs-with-droplist-index='2']").click();
+            $("h1").shouldHave(text("Откройте вклад"));
+        });
+    }
+    @Test
+    @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
+    void pageOpenButtonClickbyHiLevelDiv() {
+        step ("Open Tinkoff main page", () -> open(url));
+        step("Locate and press Вклады by qa type", () -> {
+            $("[data-index='2']").click();
             $("h1").shouldHave(text("Откройте вклад"));
         });
     }
 
+
+    //data-index="2"
 
 }//class
 
