@@ -49,7 +49,7 @@ allure {
 
 dependencies {
     testImplementation 'org.aspectj:aspectjweaver:1.9.5'
-    testImplementation 'com.codeborne:selenide:5.11.1'
+    testImplementation 'com.codeborne:selenide:5.12.1'
     testImplementation "io.qameta.allure:allure-selenide:${allureVersion}"
     testImplementation "io.qameta.allure:allure-rest-assured:${allureVersion}"
     testImplementation 'io.rest-assured:rest-assured:4.1.2'
@@ -67,20 +67,8 @@ tasks.withType(Test) {
     systemProperties = System.properties
 }
 
-task facebook_tests(type: Test) {
+task tkb_tests(type: Test) {
     useJUnitPlatform {
-        includeTags 'facebook_test'
+        includeTags 'tkb_tests'
     }
 }
-task google_tests(type: Test) {
-    useJUnitPlatform {
-        includeTags 'google_test'
-    }
-}
-task yandex_tests(type: Test) {
-    useJUnitPlatform {
-        includeTags 'yandex_test'
-    }
-}
-
-
