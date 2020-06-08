@@ -20,8 +20,10 @@ public class TestBase {
     }
     @BeforeEach
     public void BeforeEachTest(){
-        if (selenide_remote.equals("null")) {
-            System.setProperty("selenide_remote", FileReadHelper.getStringFromFile("selenide_remote.secret")+":4444/wd/hub");
+        if (selenide_remote == "null") {
+            Configuration.remote = FileReadHelper.getStringFromFile("selenide_remote.secret")+":4444/wd/hub";
+        } else {
+            Configuration.remote = selenide_remote;
         }
         //        Configuration.browser = "opera";
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -30,7 +32,7 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
 
-        Configuration.remote = System.getProperty("selenide_remote", "localhost");
+
     }
     @AfterEach
     public void closeBrowser(){
