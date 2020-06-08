@@ -21,6 +21,7 @@
 *.iml
 
 # Project gen files
+allure.properties
 .idea/
 .gradle/
 build/
@@ -33,3 +34,4 @@ target/
 .settings/org.eclipse.buildship.core.prefs
 .vscode
 .allure/
+gradlew.bat
