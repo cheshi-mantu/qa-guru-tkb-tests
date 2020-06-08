@@ -20,18 +20,16 @@ public class TestBase {
     }
     @BeforeEach
     public void BeforeEachTest(){
-        if (selenide_remote == "null") {
-            Configuration.remote = FileReadHelper.getStringFromFile("selenide_remote.secret")+":4444/wd/hub";
-        } else {
-            Configuration.remote = selenide_remote;
-        }
-        //        Configuration.browser = "opera";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("EnableVNC", true);
         capabilities.setCapability("EnableVideo", true);
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
-
+        if (selenide_remote.equals("null")) {
+            Configuration.remote = FileReadHelper.getStringFromFile("selenide_remote.secret")+":4444/wd/hub";
+        } else {
+            Configuration.remote = selenide_remote + ":4444/wd/hub";
+        }
 
     }
     @AfterEach
