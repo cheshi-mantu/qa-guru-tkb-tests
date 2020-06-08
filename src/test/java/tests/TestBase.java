@@ -27,7 +27,7 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
         Configuration.remote = selenide_remote;
-        if (selenide_remote == "null") {
+        if (selenide_remote.equals("null")) {
             System.setProperty("selenide_remote", FileReadHelper.getStringFromFile("selenide_remote.secret")+":4444/wd/hub");
         }
     }
