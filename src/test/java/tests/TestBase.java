@@ -30,7 +30,7 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
 
-        Configuration.remote = selenide_remote;
+        Configuration.remote = System.getProperty("selenide_remote", "localhost");
     }
     @AfterEach
     public void closeBrowser(){
