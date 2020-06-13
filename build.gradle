@@ -1,3 +1,5 @@
+import static java.lang.System.*
+
 buildscript {
 
     repositories {
@@ -61,6 +63,14 @@ tasks.withType(JavaCompile) {
 tasks.withType(Test) {
     systemProperties = System.properties
 }
+
+//test {
+//    systemProperty "selenide.fastSetValue", "true"
+//    systemProperty "chromeoptions.args", "--disable-notifications"
+//    systemProperty "chromeoptions.args", "intl.accept_languages=en"
+//
+//}
+
 
 task tkb_tests(type: Test) {
     useJUnitPlatform {

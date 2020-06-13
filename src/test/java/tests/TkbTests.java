@@ -1,13 +1,16 @@
 package tests;
 
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Keys;
 
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -15,11 +18,17 @@ import static com.codeborne.selenide.Selenide.*;
 import static helpers.EnvTkb.*;
 import static io.qameta.allure.Allure.step;
 
-
 @Epic("QA.GURU QA automation course")
-@Story("Selenide TKB tests")
+@Story("Selenide TKB tests homeworx")
+
 @Tag("tkb_tests")
+
 class TkbTests extends TestBase {
+    @BeforeEach
+    void MaxBrowserWindow(){
+        Configuration.startMaximized = true;
+    }
+
     @Test
     @Description("Open page, find Вклады button, select closest A, then click")
     void pageOpenButtonClickClosestA() {
@@ -65,42 +74,73 @@ class TkbTests extends TestBase {
             $("h1").shouldHave(text("Откройте вклад"));
         });
     }
+    @Test
+    @Description("Open page, find Вклады button, click, set value 2500000 to deposit amount, press tab, check value is stored")
+    void pageDepositWidgetAmount() {
+        step ("Open Tinkoff main page", () -> open(url));
+        step("Locate and press Вклады by qa type", () -> {
+            $("[href='/deposit/']").click();
+            $("[data-qa-data='uikit/pageHeader']").shouldHave(text("Вклады"));
+            $("[data-qa-type='uikit/inputBox.inputContainer'] input").setValue("2500000");
+            $("[data-qa-type='uikit/inputBox.inputContainer'] input").pressTab();
+            //Selenide.actions().sendKeys(Keys.TAB).perfrom();
+            $("[data-qa-type='uikit/inputBox.inputContainer'] input").shouldHave(value("2500000"));
+        });
+    }
+    @Test
+    @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
+    void pageDepositWidgetDropDown () {
+        step ("Open Tinkoff Ddeposits page", () -> open(url+"/deposit/"));
+        step("Locate currency selection drop-down list with Рубли by default", () -> {
+            $("[data-qa-type='uikit/select.value']").shouldHave(text("Рубли"));
+//            $("[role='listbox']").click(); // this works
+        });
+        step("Click drop-down item and select Доллары", () -> {
+            $("[data-qa-type='uikit/inputBox']", 2).click(); // this works
+//            $("[data-qa-type='uikit/dropdown.item']").$(byText("Доллары США")).click();
+            $("[data-qa-type='uikit/scroll']").$(byText("Доллары США")).click();
+//            $("[role='heading']").$(byText("Доллар")).click();
+            $("[data-qa-type='uikit/inputBox']",2 ).$("[data-qa-type='uikit/select.value']").shouldHave(text("Доллары США"));
+//          setTimeout(function(){debugger},5000) <<< = in console of DEv Tools
+        });
 
 
-    //data-index="2"
+    }
+
+    @Test
+    @Description("Open deposits page, select USD, hover the pie and check text contains $")
+    void pageDepositWidgetPie () {
+        step ("Open Tinkoff Deposits page", () -> open(url+"/deposit/"));
+        step("Locate currency selection drop-down list with Рубли by default", () -> {
+            $("[data-qa-type='uikit/select.value']").shouldHave(text("Рубли"));
+//            $("[role='listbox']").click(); // this works
+        });
+        step("Click drop-down item and select Доллары", () -> {
+            $("[data-qa-type='uikit/inputBox']", 2).click(); // this works
+            $("[data-qa-type='uikit/scroll']").$(byText("Доллары США")).click();
+            $("[data-qa-type='uikit/inputBox']",2 ).$("[data-qa-type='uikit/select.value']").shouldHave(text("Доллары США"));
+        });
+        step("Hover Pie, Pie should have $ sign in both states: without hover and with hover", () -> {
+            $("span[data-qa-file='Money']").shouldHave(text("$"));
+            $("div[data-qa-file='Pie']").hover();
+            $("span[data-qa-file='Money']").shouldHave(text("$"));
+        });
+    }
+
+    @Test
+    @Description("Open deposits page, select USD, hover the pie and check text contains $")
+    void pageDepositCheckBox () {
+        step ("Open Tinkoff Deposits page", () -> open(url+"/deposit/"));
+        step("Check check boxes are visible", () -> {
+            $("[data-qa-file='DepositCalculator']").shouldHave(text("Повысить ставку по вкладу"));
+        });
+        step("Uncheck upper checkbox, validate if the input type checkbox is unchecked", () -> {
+            $("[data-qa-type='uikit/checkbox'] input",0).shouldBe(checked);
+            $("[data-qa-file='DepositCalculator']").$(byText("Повысить ставку по вкладу")).click();
+            $("[data-qa-type='uikit/checkbox'] input",0).shouldNotBe(checked);
+        });
+    }
+
 
 }//class
 
-
-
-            //            step("Click Edit Profile", ()->{
-//                $(byPartialLinkText("Edit Profile")).click();
-//            });
-//
-//            step("Edit about info, Life Events link must be available on the page", ()->{
-//                $(byText("Edit your about info")).click();
-//            });
-//            step("Go to Life Events and check if 'Add a life event' exists", ()->{
-//                $(byLinkText("Life Events")).click();
-//            });
-//            step("Click on Add a life event", ()->{
-//                $(byText("Add a life event")).click();
-//            });
-//            step("Click on Relationship, then click on New Relationship, then click on SaySomething, then set stupid string, then click share", ()->{
-//
-//                $(byText("Relationship")).click();
-//                $(byText("New Relationship")).click();
-//                $(withText("Say something")).click();
-//                $(getFocusedElement()).sendKeys("112233445566");
-//                $(byText("Share")).click();
-//
-//            });
-//            step("homepage and check we have Relationship update in the timeline", ()->{
-//
-//                $(byLinkText("Home")).click(); // works
-//                $("body").shouldHave(text("112233445566"));
-////                $(byText("Timeline")).shouldBe(visible);
-////                $(byText("Timeline")).click();
-////                $(byTagName("div")).$(byAttribute("role", "feed")).shouldHave(text("112233445566"));
-//            });
-//

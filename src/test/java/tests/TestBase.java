@@ -20,17 +20,18 @@ public class TestBase {
     }
     @BeforeEach
     public void BeforeEachTest(){
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("EnableVNC", true);
-        capabilities.setCapability("EnableVideo", true);
-        Configuration.browserCapabilities = capabilities;
-        Configuration.startMaximized = true;
-        if (selenide_remote.equals("null")) {
-            Configuration.remote = FileReadHelper.getStringFromFile("selenide_remote.secret")+":4444/wd/hub";
-        } else {
-            Configuration.remote = selenide_remote + ":4444/wd/hub";
-        }
-
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("EnableVNC", true);
+//        capabilities.setCapability("EnableVideo", true);
+//        Configuration.browserCapabilities = capabilities;
+//        Configuration.startMaximized = true;
+//        if (selenide_remote.equals("null")) {
+//            Configuration.remote = FileReadHelper.getStringFromFile("selenide_remote.secret")+":4444/wd/hub";
+//        } else {
+//            Configuration.remote = selenide_remote + ":4444/wd/hub";
+//        }
+        System.setProperty("chromeoptions.args", "--disable-notifications");
+        System.setProperty("chromeoptions.args", "intl.accept_languages=ru");
     }
     @AfterEach
     public void closeBrowser(){
