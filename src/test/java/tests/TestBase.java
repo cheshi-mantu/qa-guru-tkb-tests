@@ -8,7 +8,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 import static helpers.EnvTkb.selenoid_url;
@@ -21,10 +20,8 @@ public class TestBase {
     }
     @BeforeEach
     public void BeforeEachTest(){
-        if (selenoid_url == null) {
-            Configuration.remote = FileReadHelper.getStringFromFile("selenoid_url.secret")+":4444/wd/hub";
-        } else {
-            Configuration.remote = selenoid_url + ":4444/wd/hub";
+        if (selenoid_url.equals("localhost")) {
+            System.setProperty("selenoid_url", FileReadHelper.getStringFromFile("selenoid_url.secret"));
         }
         Configuration.browser = CustomWebDriver.class.getName();
         Configuration.startMaximized = true;

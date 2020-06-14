@@ -13,7 +13,7 @@ public class FileReadHelper {
                 txtData = fileReader.nextLine();
                 fileReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred: ");
             e.printStackTrace();
         }
         return txtData;

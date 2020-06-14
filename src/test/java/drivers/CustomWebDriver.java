@@ -26,7 +26,7 @@ public class CustomWebDriver implements WebDriverProvider {
         capabilities.setCapability(ChromeOptions.CAPABILITY, buildChromeOptions());
         WebDriverManager.chromedriver().setup();
 
-        if(System.getProperty("selenoid_url") != null) {
+        if(!System.getProperty("selenoid_url").equals("localhost")) {
             return new RemoteWebDriver(getRemoteWebdriverUrl(), capabilities);
         } else {
             return new ChromeDriver(capabilities);
@@ -46,7 +46,7 @@ public class CustomWebDriver implements WebDriverProvider {
 
     private URL getRemoteWebdriverUrl() {
         try {
-            return new URL( System.getProperty("selenoid_url", "localhost") + ":4444/wd/hub");
+            return new URL(System.getProperty("selenoid_url") + ":4444/wd/hub");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

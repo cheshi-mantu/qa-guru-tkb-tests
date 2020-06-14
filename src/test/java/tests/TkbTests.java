@@ -82,7 +82,7 @@ class TkbTests extends TestBase {
             $("[href='/deposit/']").click();
             $("[data-qa-data='uikit/pageHeader']").shouldHave(text("Вклады"));
             $("[data-qa-type='uikit/inputBox.inputContainer'] input").setValue("2500000");
-            $("[data-qa-type='uikit/inputBox.inputContainer'] input").pressTab();
+//            $("[data-qa-type='uikit/inputBox.inputContainer'] input").pressTab();
             //Selenide.actions().sendKeys(Keys.TAB).perfrom();
             $("[data-qa-type='uikit/inputBox.inputContainer'] input").shouldHave(value("2500000"));
         });
