@@ -2,7 +2,7 @@ package helpers;
 
 public class EnvTkb {
     public final static String
-        selenide_remote = System.getProperty("selenide_remote","null"),
+        selenoid_url = System.getProperty("selenoid_url",null),
         url = System.getProperty("url", "https://www.tinkoff.ru");
 }
 
