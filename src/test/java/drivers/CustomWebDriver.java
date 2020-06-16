@@ -26,8 +26,9 @@ public class CustomWebDriver implements WebDriverProvider {
         capabilities.setCapability("videoFrameRate", 24);
         capabilities.setCapability(ChromeOptions.CAPABILITY, buildChromeOptions());
         WebDriverManager.chromedriver().setup();
+
         if(isRemoteDriver) {
-            return new RemoteWebDriver(getRemoteWebdriverUrl(), capabilities);
+            return getRemoteWebDriver(capabilities);
         } else {
             return getLocalChromeDriver(capabilities);
         }
