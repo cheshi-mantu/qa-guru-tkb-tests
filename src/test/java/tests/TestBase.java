@@ -11,8 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 import static helpers.AttachmentsHelper.*;
-import static helpers.DriverHelper.getConsoleLogs;
-import static helpers.DriverHelper.getSessionId;
+import static helpers.DriverHelper.*;
 import static helpers.EnvTkb.isVideoOn;
 
 public class TestBase {
@@ -20,6 +19,7 @@ public class TestBase {
     @BeforeAll
     public static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
+        configureSelenide();
     }
     @BeforeEach
     public void BeforeEachTest(){
