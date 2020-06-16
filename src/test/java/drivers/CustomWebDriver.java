@@ -1,18 +1,20 @@
 package drivers;
 
-
 import com.codeborne.selenide.WebDriverProvider;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.Browsers.CHROME;
+import static helpers.EnvTkb.isRemoteDriver;
+import static helpers.EnvTkb.remoteDriverUrl;
 
 
 public class CustomWebDriver implements WebDriverProvider {
@@ -22,31 +24,37 @@ public class CustomWebDriver implements WebDriverProvider {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         capabilities.setCapability("videoFrameRate", 24);
-
         capabilities.setCapability(ChromeOptions.CAPABILITY, buildChromeOptions());
         WebDriverManager.chromedriver().setup();
-
-        if(!System.getProperty("selenoid_url").equals("localhost")) {
+        if(isRemoteDriver) {
             return new RemoteWebDriver(getRemoteWebdriverUrl(), capabilities);
         } else {
-            return new ChromeDriver(capabilities);
+            return getLocalChromeDriver(capabilities);
         }
     }
 
     private ChromeOptions buildChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--disable-infobars");
         chromeOptions.addArguments("--lang=ru");
-
         return chromeOptions;
+    }
+    private WebDriver getLocalChromeDriver(DesiredCapabilities capabilities) {
+        return new ChromeDriver(capabilities);
+    }
+
+    private WebDriver getRemoteWebDriver(DesiredCapabilities capabilities) {
+        RemoteWebDriver remoteWebDriver = new RemoteWebDriver(getRemoteWebdriverUrl(), capabilities);
+        remoteWebDriver.setFileDetector(new LocalFileDetector());
+
+        return remoteWebDriver;
     }
 
     private URL getRemoteWebdriverUrl() {
         try {
-            return new URL(System.getProperty("selenoid_url") + ":4444/wd/hub");
+            return new URL(remoteDriverUrl);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

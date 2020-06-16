@@ -10,7 +10,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
-import static helpers.EnvTkb.selenoid_url;
+import static helpers.AttachmentsHelper.*;
+import static helpers.DriverHelper.getConsoleLogs;
+import static helpers.DriverHelper.getSessionId;
+import static helpers.EnvTkb.isVideoOn;
 
 public class TestBase {
 
@@ -20,14 +23,16 @@ public class TestBase {
     }
     @BeforeEach
     public void BeforeEachTest(){
-        if (selenoid_url.equals("localhost")) {
-            System.setProperty("selenoid_url", FileReadHelper.getStringFromFile("selenoid_url.secret"));
-        }
-        Configuration.browser = CustomWebDriver.class.getName();
+//        Configuration.browser = CustomWebDriver.class.getName();
         Configuration.startMaximized = true;
     }
     @AfterEach
-    public void closeBrowser(){
+    public void afterEach(){
+        String sessionId = getSessionId();
+        attachScreenshot("Last screenshot");
+        attachPageSource();
+        attachAsText("Browser console logs", getConsoleLogs());
         closeWebDriver();
+        if (isVideoOn) attachVideo(sessionId); // in browserstack video url generates after driver close
     }
 }

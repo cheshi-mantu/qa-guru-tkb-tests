@@ -1,8 +1,13 @@
 package helpers;
 
 public class EnvTkb {
-    public static String
-        selenoid_url = System.getProperty("selenoid_url","localhost"),
-        url = System.getProperty("url","https://www.tinkoff.ru");
+    public static final String
+        webUrl = "http://" + System.getProperty("web_url", "autotests.cloud"),
+        remoteDriverUrl = System.getProperty("remote_driver_url"),
+        url = System.getProperty("url","https://www.tinkoff.ru"),
+        videoStorageUrl = System.getProperty("video_storage_url");
+    public static boolean
+        isRemoteDriver = remoteDriverUrl != null,
+        isVideoOn = videoStorageUrl != null;
 }
 
