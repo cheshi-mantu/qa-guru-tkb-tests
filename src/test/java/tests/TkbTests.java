@@ -8,6 +8,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -143,6 +144,21 @@ class TkbTests extends TestBase {
             $("[data-qa-type='uikit/checkbox'] input",0).shouldBe(checked);
             $("[data-qa-file='DepositCalculator']").$(byText("Повысить ставку по вкладу")).click();
             $("[data-qa-type='uikit/checkbox'] input",0).shouldNotBe(checked);
+        });
+    }
+
+    @Test
+    @Description("Open main page, click Бизнес then Регистрация бизнеса then check Регистрация ИП из презент")
+    @DisplayName("Open DEPOSITES page, check if CheckBoxes are visible, click, check it is unchecked")
+    void pageIpRegistration () {
+        step ("Open Tinkoff main page", () -> open(url));
+        step("Click big БИЗНЕС in the header", () -> {
+            $("[href='/business/']").click();
+            $("html").shouldHave(text("Регистрация бизнеса"));
+        });
+        step("Click on Регистрация бизнеса and chek if there is Регистрация ИП section", () -> {
+            $("[data-tabs-with-droplist-index='1']").click();
+            $("html").shouldHave(text("Регистрация ИП"));
         });
     }
 
