@@ -9,7 +9,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static helpers.EnvTkb.webUrl;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 
@@ -17,7 +16,7 @@ public class DriverHelper {
 
     public static void configureSelenide() {
         Configuration.browser = CustomWebDriver.class.getName();
-        Configuration.baseUrl = webUrl;
+//        Configuration.baseUrl = webUrl;
         Configuration.timeout = 10000;
     }
 

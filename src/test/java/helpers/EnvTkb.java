@@ -2,7 +2,7 @@ package helpers;
 
 public class EnvTkb {
     public static final String
-        webUrl = "http://" + System.getProperty("web_url", "autotests.cloud"),
+//        webUrl = "http://" + System.getProperty("web_url", "autotests.cloud"),
         remoteDriverUrl = System.getProperty("remote_driver_url"),
         url = System.getProperty("url","https://www.tinkoff.ru"),
         videoStorageUrl = System.getProperty("video_storage_url");
