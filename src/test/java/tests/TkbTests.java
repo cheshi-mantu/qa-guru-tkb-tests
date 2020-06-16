@@ -2,18 +2,14 @@ package tests;
 
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.Keys;
-
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-
 
 import static helpers.EnvTkb.*;
 import static io.qameta.allure.Allure.step;
@@ -31,6 +27,7 @@ class TkbTests extends TestBase {
 
     @Test
     @Description("Open page, find Вклады button, select closest A, then click")
+    @DisplayName("Open main page, click on Вклады button by closest A")
     void pageOpenButtonClickClosestA() {
             step ("Open Tinkoff main page", () -> open(url));
             step("Locate and press Вклады on page top", () -> {
@@ -40,6 +37,7 @@ class TkbTests extends TestBase {
             }
     @Test
     @Description("Open page, find Вклады button by href='/deposit/', then click")
+    @DisplayName("Open main page, click on Вклады button by HREF")
     void pageOpenButtonClickbyHref() {
         step ("Open Tinkoff main page", () -> open(url));
         step("Locate and press Вклады by href ", () -> {
@@ -49,6 +47,7 @@ class TkbTests extends TestBase {
     }
     @Test
     @Description("Open page, find Вклады button by qa type , then click")
+    @DisplayName("Open main page, click on Вклады button by uikit index 2")
     void pageOpenButtonClickbyQaType() {
         step ("Open Tinkoff main page", () -> open(url));
         step("Locate and press Вклады by qa type", () -> {
@@ -58,6 +57,7 @@ class TkbTests extends TestBase {
     }
     @Test
     @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
+    @DisplayName("Open main page, click on Вклады button by DIV")
     void pageOpenButtonClickbyDiv() {
         step ("Open Tinkoff main page", () -> open(url));
         step("Locate and press Вклады by qa type", () -> {
@@ -67,6 +67,7 @@ class TkbTests extends TestBase {
     }
     @Test
     @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
+    @DisplayName("Open main page, click on Вклады button by data-index")
     void pageOpenButtonClickbyHiLevelDiv() {
         step ("Open Tinkoff main page", () -> open(url));
         step("Locate and press Вклады by qa type", () -> {
@@ -76,6 +77,7 @@ class TkbTests extends TestBase {
     }
     @Test
     @Description("Open page, find Вклады button, click, set value 2500000 to deposit amount, press tab, check value is stored")
+    @DisplayName("Open main page, click on Вклады button, set value for the amount, check if set")
     void pageDepositWidgetAmount() {
         step ("Open Tinkoff main page", () -> open(url));
         step("Locate and press Вклады by qa type", () -> {
@@ -89,6 +91,7 @@ class TkbTests extends TestBase {
     }
     @Test
     @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
+    @DisplayName("Open DEPOSITES page, click DDownl list, select USD, check")
     void pageDepositWidgetDropDown () {
         step ("Open Tinkoff Ddeposits page", () -> open(url+"/deposit/"));
         step("Locate currency selection drop-down list with Рубли by default", () -> {
@@ -109,6 +112,7 @@ class TkbTests extends TestBase {
 
     @Test
     @Description("Open deposits page, select USD, hover the pie and check text contains $")
+    @DisplayName("Open DEPOSITES page, select USD from DDown, hover mouse over Pie, check all have $ sign")
     void pageDepositWidgetPie () {
         step ("Open Tinkoff Deposits page", () -> open(url+"/deposit/"));
         step("Locate currency selection drop-down list with Рубли by default", () -> {
@@ -128,7 +132,8 @@ class TkbTests extends TestBase {
     }
 
     @Test
-    @Description("Open deposits page, select USD, hover the pie and check text contains $")
+    @Description("Open deposits page, uncheck 1st checkbox")
+    @DisplayName("Open DEPOSITES page, check if CheckBoxes are visible, click, check it is unchecked")
     void pageDepositCheckBox () {
         step ("Open Tinkoff Deposits page", () -> open(url+"/deposit/"));
         step("Check check boxes are visible", () -> {
