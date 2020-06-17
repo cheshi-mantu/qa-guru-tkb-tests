@@ -158,7 +158,7 @@ class TkbTests extends TestBase {
         });
         step("Click on Регистрация бизнеса and chek if there is Регистрация ИП section", () -> {
             $("[data-tabs-with-droplist-index='1']").click();
-            $("html").shouldHave(text("Регистрация ИПППППППППППППП"));
+            $("html").shouldHave(text("Регистрация ИП"));
         });
     }
 
