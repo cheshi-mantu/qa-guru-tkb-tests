@@ -1,6 +1,5 @@
 package tests;
 
-
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -8,7 +7,6 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -17,7 +15,6 @@ import static io.qameta.allure.Allure.step;
 
 @Epic("QA.GURU QA automation course")
 @Story("Selenide TKB tests homeworx")
-
 @Tag("tkb_tests")
 
 class TkbTests extends TestBase {
@@ -36,6 +33,7 @@ class TkbTests extends TestBase {
                 $("h1").shouldHave(text("Откройте вклад"));
             });
             }
+
     @Test
     @Description("Open page, find Вклады button by href='/deposit/', then click")
     @DisplayName("Open main page, click on Вклады button by HREF")
@@ -46,6 +44,7 @@ class TkbTests extends TestBase {
             $("h1").shouldHave(text("Откройте вклад"));
         });
     }
+
     @Test
     @Description("Open page, find Вклады button by qa type , then click")
     @DisplayName("Open main page, click on Вклады button by uikit index 2")
@@ -56,6 +55,7 @@ class TkbTests extends TestBase {
             $("h1").shouldHave(text("Откройте вклад"));
         });
     }
+
     @Test
     @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
     @DisplayName("Open main page, click on Вклады button by DIV")
@@ -66,6 +66,7 @@ class TkbTests extends TestBase {
             $("h1").shouldHave(text("Откройте вклад"));
         });
     }
+
     @Test
     @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
     @DisplayName("Open main page, click on Вклады button by data-index")
@@ -76,6 +77,7 @@ class TkbTests extends TestBase {
             $("h1").shouldHave(text("Откройте вклад"));
         });
     }
+
     @Test
     @Description("Open page, find Вклады button, click, set value 2500000 to deposit amount, press tab, check value is stored")
     @DisplayName("Open main page, click on Вклады button, set value for the amount, check if set")
@@ -90,6 +92,7 @@ class TkbTests extends TestBase {
             $("[data-qa-type='uikit/inputBox.inputContainer'] input").shouldHave(value("2500000"));
         });
     }
+
     @Test
     @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
     @DisplayName("Open DEPOSITES page, click DDownl list, select USD, check")
@@ -97,18 +100,12 @@ class TkbTests extends TestBase {
         step ("Open Tinkoff Ddeposits page", () -> open(url+"/deposit/"));
         step("Locate currency selection drop-down list with Рубли by default", () -> {
             $("[data-qa-type='uikit/select.value']").shouldHave(text("Рубли"));
-//            $("[role='listbox']").click(); // this works
         });
         step("Click drop-down item and select Доллары", () -> {
             $("[data-qa-type='uikit/inputBox']", 2).click(); // this works
-//            $("[data-qa-type='uikit/dropdown.item']").$(byText("Доллары США")).click();
             $("[data-qa-type='uikit/scroll']").$(byText("Доллары США")).click();
-//            $("[role='heading']").$(byText("Доллар")).click();
             $("[data-qa-type='uikit/inputBox']",2 ).$("[data-qa-type='uikit/select.value']").shouldHave(text("Доллары США"));
-//          setTimeout(function(){debugger},5000) <<< = in console of DEv Tools
         });
-
-
     }
 
     @Test
@@ -118,7 +115,6 @@ class TkbTests extends TestBase {
         step ("Open Tinkoff Deposits page", () -> open(url+"/deposit/"));
         step("Locate currency selection drop-down list with Рубли by default", () -> {
             $("[data-qa-type='uikit/select.value']").shouldHave(text("Рубли"));
-//            $("[role='listbox']").click(); // this works
         });
         step("Click drop-down item and select Доллары", () -> {
             $("[data-qa-type='uikit/inputBox']", 2).click(); // this works
@@ -161,7 +157,5 @@ class TkbTests extends TestBase {
             $("html").shouldHave(text("Регистрация ИПППППП"));
         });
     }
-
-
-}//class
+}
 
