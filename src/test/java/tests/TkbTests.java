@@ -16,7 +16,6 @@ import static io.qameta.allure.Allure.step;
 @Epic("QA.GURU QA automation course")
 @Story("Selenide TKB tests homeworx")
 @Tag("tkb_tests")
-
 class TkbTests extends TestBase {
     @BeforeEach
     void MaxBrowserWindow(){
@@ -27,12 +26,12 @@ class TkbTests extends TestBase {
     @Description("Open page, find Вклады button, select closest A, then click")
     @DisplayName("Open main page, click on Вклады button by closest A")
     void pageOpenButtonClickClosestA() {
-            step ("Open Tinkoff main page", () -> open(url));
-            step("Locate and press Вклады on page top", () -> {
-                $(byText("Вклады")).closest("a").click();
-                $("h1").shouldHave(text("Откройте вклад"));
-            });
-            }
+        step ("Open Tinkoff main page", () -> open(url));
+        step("Locate and press Вклады on page top", () -> {
+            $(byText("Вклады")).closest("a").click();
+            $("h1").shouldHave(text("Откройте вклад"));
+        });
+    }
 
     @Test
     @Description("Open page, find Вклады button by href='/deposit/', then click")
