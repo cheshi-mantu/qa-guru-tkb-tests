@@ -150,7 +150,8 @@ class TkbTests extends TestBase {
             $("[href='/business/']").click();
             $("html").shouldHave(text("Регистрация бизнеса"));
         });
-        step("Click on Регистрация бизнеса and chek if there is Регистрация ИП section", () -> {
+        //next will fail
+        step("Click on Регистрация бизнеса and chek if there is Регистрация ИП section // it will fail", () -> {
             $("[data-tabs-with-droplist-index='1']").click();
             $("html").shouldHave(text("Регистрация ИПППППП"));
         });
