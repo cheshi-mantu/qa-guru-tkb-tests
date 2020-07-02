@@ -9,7 +9,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static helpers.EnvTkb.videoStorageUrl;
+import static helpers.Environment.videoStorageUrl;
 
 
 public class AttachmentsHelper {

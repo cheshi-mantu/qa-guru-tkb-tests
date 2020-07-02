@@ -1,6 +1,6 @@
 package helpers;
 
-public class EnvTkb {
+public class Environment {
     public static final String
 //        webUrl = "http://" + System.getProperty("web_url", "autotests.cloud"),
         remoteDriverUrl = System.getProperty("remote_driver_url"),

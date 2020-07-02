@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-import static helpers.EnvTkb.*;
+import static helpers.Environment.*;
 import static io.qameta.allure.Allure.step;
 
 @Epic("QA.GURU QA automation course")

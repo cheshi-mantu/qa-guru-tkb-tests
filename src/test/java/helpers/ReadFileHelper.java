@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class FileReadHelper {
+public class ReadFileHelper {
     public static String getStringFromFile(String fullFileName) {
         String txtData = "";
         try {
