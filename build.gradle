@@ -62,10 +62,6 @@ tasks.withType(JavaCompile) {
 //this is added to pass the system properties received from the command line when invoking gradle with tests
 tasks.withType(Test) {
     systemProperties = System.properties
-    systemProperty "selenide.fastSetValue", "true"
-    systemProperty "selenide.timeOut", "6000"
-    systemProperty "selenide.enableVNC", "true"
-    systemProperty "chromeoptions.args", "--disable-notifications --no-sandbox --disable-infobars --intl.accept_languages=ru"
 }
 
 

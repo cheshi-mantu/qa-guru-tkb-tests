@@ -20,9 +20,6 @@ public class DriverHelper {
         Configuration.timeout = 10000;
     }
 
-    public static By byTestId(String testId) {
-            return by("data-testid",  testId);
-    }
 
     public static String getSessionId(){
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString().replace("selenoid","");
@@ -32,8 +29,5 @@ public class DriverHelper {
         return String.join("\n", Selenide.getWebDriverLogs(BROWSER));
     }
 
-//    public static String getNetworkLogs() {
-//        todo https://ru.selenide.org/2019/12/18/advent-calendar-network-logs-with-proxy/
-//    }
 
 }
