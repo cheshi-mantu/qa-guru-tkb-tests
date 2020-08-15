@@ -18,10 +18,6 @@ public class TestBase {
     public static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         configureSelenide();
-    }
-    @BeforeEach
-    public void BeforeEachTest(){
-//        Configuration.browser = CustomWebDriver.class.getName();
         Configuration.startMaximized = true;
     }
     @AfterEach

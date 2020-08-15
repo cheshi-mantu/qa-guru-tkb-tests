@@ -92,7 +92,7 @@ class TkbTests extends TestBase {
 
     @Test
     @Description("Open page, find Вклады button by div with data-tabs-with-droplist-index , then click")
-    @DisplayName("Open DEPOSITES page, click DDownl list, select USD, check")
+    @DisplayName("Open DEPOSITS page, click DDownl list, select USD, check")
     void pageDepositWidgetDropDown () {
         step ("Open Tinkoff Ddeposits page", () -> open(url+"/deposit/"));
         step("Locate currency selection drop-down list with Рубли by default", () -> {
@@ -107,7 +107,7 @@ class TkbTests extends TestBase {
 
     @Test
     @Description("Open deposits page, select USD, hover the pie and check text contains $")
-    @DisplayName("Open DEPOSITES page, select USD from DDown, hover mouse over Pie, check all have $ sign")
+    @DisplayName("Open DEPOSITS page, select USD from DDown, hover mouse over Pie, check all have $ sign")
     void pageDepositWidgetPie () {
         step ("Open Tinkoff Deposits page", () -> open(url+"/deposit/"));
         step("Locate currency selection drop-down list with Рубли by default", () -> {
@@ -127,7 +127,7 @@ class TkbTests extends TestBase {
 
     @Test
     @Description("Open deposits page, uncheck 1st checkbox")
-    @DisplayName("Open DEPOSITES page, check if CheckBoxes are visible, click, check it is unchecked")
+    @DisplayName("Open DEPOSITS page, check if CheckBoxes are visible, click, check it is unchecked")
     void pageDepositCheckBox () {
         step ("Open Tinkoff Deposits page", () -> open(url+"/deposit/"));
         step("Check check boxes are visible", () -> {
@@ -142,7 +142,7 @@ class TkbTests extends TestBase {
 
     @Test
     @Description("Open main page, click Бизнес then Регистрация бизнеса then check Регистрация ИП из презент")
-    @DisplayName("Open DEPOSITES page, check if CheckBoxes are visible, click, check it is unchecked")
+    @DisplayName("Open DEPOSITS page, check if CheckBoxes are visible, click, check it is unchecked")
     void pageIpRegistration () {
         step ("Open Tinkoff main page", () -> open(url));
         step("Click big БИЗНЕС in the header", () -> {
